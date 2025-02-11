@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>게시물 수정</title>
+</head>
+<body>
+    <h1>게시물 수정</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- 폼 필드를 렌더링 -->
+        <button type="submit">수정하기</button>
+    </form>
+    <a href="{% url 'post_detail' post.pk %}">취소</a>
+    
+</body>
+</html>

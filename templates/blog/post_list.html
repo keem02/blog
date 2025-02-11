@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>블로그 목록</title>
+</head>
+<body>
+    <h1>게시물 목록</h1>
+    <a href="{% url 'create_post' %}">Create New Post</a>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a> ({{ post.created_at }})
+                <a href="{% url 'edit_post' post.pk %}">수정</a>
+                <a href="{% url 'delete_post' post.pk %}">삭제</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <form method="GET" action="{% url 'post_list' %}">
+        <input type="text" name="q" placeholder="Search posts..." value="{{ request.GET.q }}">
+        <button type="submit">Search</button>
+    </form>
+</body>
+</html>
